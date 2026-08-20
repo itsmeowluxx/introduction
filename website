@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนะนำตัว - เหมียว ปวรินันท์</title>
+    <!-- นำเข้าฟอนต์น่ารัก อ่านง่าย "Mitr" และ "Kanit" จาก Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome สำหรับไอคอนน่ารักๆ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #FFF0F5; /* สีชมพูอมขาว LavenderBlush */
+            --card-bg: #FFE4E1; /* ชมพูอ่อนกว่าพื้นหลังสำหรับใส่ข้อความ MistyRose */
+            --primary-color: #FFB6C1; /* ชมพูน่ารัก */
+            --text-color: #4A4A4A; /* สีตัวอักษรเข้มพอให้อ่านง่าย */
+            --accent-color: #FF69B4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Mitr', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* แถบเมนูด้านบน */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--accent-color);
+        }
+
+        /* ปุ่มเปิด-ปิด หมวดหมู่ */
+        .menu-toggle {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 15px;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* ซ่อนเมนูแบบ Toggle ในหน้าจอเล็ก */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                padding: 15px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        /* คอนเทนเนอร์หลัก */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        /* ส่วนแสดงรูปภาพหลักและรูปย่อย */
+        .gallery-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .main-img-box img {
+            width: 280px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 4px solid #ffffff;
+        }
+
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .thumbnails img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid white;
+            transition: 0.2s;
+        }
+
+        .thumbnails img:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+        }
+
+        /* กล่องข้อความข้อมูลส่วนตัว */
+        .info-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .info-card p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        /* ไอคอนช่องทางการติดตาม */
+        .social-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social-section h2 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            color: var(--accent-color);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* 2. หน้ากิจกรรม */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .activity-card p {
+            padding: 15px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .activity-card a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- แถบด้านบน -->
+    <header>
+        <nav>
+            <div class="logo">🌸 Meow's Profile</div>
+            <button class="menu-toggle" onclick="toggleMenu()">🎀 หมวดหมู่</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active" onclick="showPage('home', this)">หน้าแรก</a></li>
+                <li><a href="#" onclick="showPage('activities', this)">กิจกรรม</a></li>
+                <li><a href="#" onclick="showPage('hobbies', this)">งานอดิเรก</a></li>
+                <li><a href="#" onclick="showPage('skills', this)">ความถนัด</a></li>
+                <li><a href="#" onclick="showPage('contact', this)">ติดต่องาน</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- 1. หน้าแรก -->
+        <section id="home" class="page-content active">
+            <h1>แนะนำตัว</h1>
+            
+            <div class="gallery-container">
+                <div class="main-img-box">
+                    <img id="mainImage" src="https://via.placeholder.com/280x350/ffb6c1/ffffff?text=Main+Photo" alt="รูปหลัก">
+                </div>
+                <div class="thumbnails">
+                    <img src="https://via.placeholder.com/60x60/ffb6c1/ffffff?text=1" onclick="changeImage(this.src)" alt="รูปย่อย 1">
+                    <img src="https://via.placeholder.com/60x60/ffe4e1/ffffff?text=2" onclick="changeImage(this.src)" alt="รูปย่อย 2">
+                    <img src="https://via.placeholder.com/60x60/ff69b4/ffffff?text=3" onclick="changeImage(this.src)" alt="รูปย่อย 3">
+                </div>
+            </div>
+
+            <div class="info-card">
+                <p><strong>ชื่อ:</strong> ปวรินันท์ ศรีพินิจ</p>
+                <p><strong>ชื่อเล่น:</strong> เหมียว</p>
+                <p><strong>สูง:</strong> 157 เซนติเมตร</p>
+                <p><strong>น้ำหนัก:</strong> 42 กิโลกรัม</p>
+                <p><strong>เกิด:</strong> เมษายน พ.ศ.2545</p>
+                <p><strong>ถิ่นกำเนิด:</strong> จังหวัดหนองคาย ประเทศไทย</p>
+                <p><strong>ภาษาที่ใช้:</strong> ไทย, อังกฤษ (กำลังศึกษา: ญี่ปุ่น, จีน)</p>
+                <p><strong>ระดับการศึกษา:</strong> ปริญญาตรีศิลปศาสตร์บัณฑิต มนุษยศาสตร์ ปรัชญาและศาสนา (กำลังศึกษา นิติศาสตร์บัณฑิต)</p>
+            </div>
+
+            <div class="social-section">
+                <h2>ช่องทางการติดตามกิจกรรม</h2>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/itsmeowluxx_?utm_source=qr" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/manatsanan.sripinit/" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@Itsmemameow" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@itsmeowluxx?_r=1&_t=ZS-992xffVRfyn" target="_blank" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.threads.com/@itsmeowluxx_?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="social-icon" title="Threads"><i class="fa-brands fa-threads"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. หน้ากิจกรรม -->
+        <section id="activities" class="page-content">
+            <h1>กิจกรรม</h1>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/ffb6c1/ffffff?text=Model" alt="นางแบบ">
+                    <p>นางแบบถ่ายภาพ เสื้อผ้าและคอสเพลย์</p>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/ffe4e1/ffffff?text=President" alt="ประธานรุ่น">
+                    <p>รับตำแหน่งประธานรุ่น ระดับปริญญาตรีและลงสมัครสมาชิกสภาผู้แทนนิสิต</p>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/ff69b4/ffffff?text=TCAS2567" alt="ยื่นหนังสือ TCAS">
+                    <p>หนึ่งในตัวแทนสมาชิกขององค์กรนิสิต-นักศึกษาในการยื่นหนังสือต่อสมาชิกสภาเพื่อแก้ไขปัญหาจากการสอบ TCAS ปี 2567<br>
+                    <a href="https://www.matichon.co.th/weekly/hot-news/article_767941" target="_blank">ข่าวที่เกี่ยวข้อง</a></p>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/ffb6c1/ffffff?text=Japan+Volunteer" alt="จิตอาสาญี่ปุ่น">
+                    <p>เข้าร่วมกิจกรรมอาสาสมัครเพื่อช่วยเหลืองานชาวบ้านในชนบทที่หมู่บ้าน oi-cho เมือง anan จังหวัด tokushima ประเทศญี่ปุ่น</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. หน้าอื่นๆ (เว้นไว้ก่อน) -->
+        <section id="hobbies" class="page-content">
+            <h1>งานอดิเรก</h1>
+            <p style="text-align: center; color: #888;">กำลังจัดเตรียมข้อมูล...</p>
+        </section>
+
+        <section id="skills" class="page-content">
+            <h1>ความถนัด</h1>
+            <p style="text-align: center; color: #888;">กำลังจัดเตรียมข้อมูล...</p>
+        </section>
+
+        <section id="contact" class="page-content">
+            <h1>ติดต่องาน</h1>
+            <p style="text-align: center; color: #888;">กำลังจัดเตรียมข้อมูล...</p>
+        </section>
+
+    </div>
+
+    <script>
+        // ฟังก์ชันสลับเมนู (สำหรับมือถือ)
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+
+        // ฟังก์ชันเปลี่ยนหน้า
+        function showPage(pageId, element) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            if(element) element.classList.add('active');
+
+            // ซ่อนเมนูหลังจากคลิกบนมือถือ
+            document.getElementById('navLinks').classList.remove('show');
+        }
+
+        // ฟังก์ชันเปลี่ยนรูปภาพหลักเมื่อคลิกรูปย่อย
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+    </script>
+</body>
+</html>
