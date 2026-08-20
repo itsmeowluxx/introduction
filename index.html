@@ -1,431 +1,460 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แนะนำตัว - ปวรินันท์ (เหมียว)</title>
-    <!-- Google Fonts: Mali & FontAwesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แนะนำตัว - ปวรินันท์ (เหมียว)</title>
+  
+  <!-- Font Mali & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root {
-            --bg-color: #fff0f5; /* สีชมพูอมขาว */
-            --card-bg: #ffe4e8; /* สีชมพูอ่อนอ่านง่าย */
-            --primary: #ffb6c1;
-            --accent: #ff69b4;
-            --text-color: #4a2e35;
-        }
+  <style>
+    :root {
+      --bg-color: #fff0f3;
+      --card-bg: #ffe4e9;
+      --primary: #ff85a2;
+      --text-color: #4a3e3d;
+      --accent: #ff6b8b;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Mali', cursive, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Mali', cursive, sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
-            padding-bottom: 50px;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding-top: 70px;
+      padding-bottom: 30px;
+      line-height: 1.6;
+    }
 
-        /* Navbar ด้านบน */
-        header {
-            background-color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
+    /* Navigation Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 10px rgba(255, 133, 162, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
 
-        nav {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 20px;
-        }
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
+    .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-        }
+    /* Mobile Nav Overlay */
+    .nav-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      z-index: 999;
+      border-radius: 0 0 20px 20px;
+      overflow: hidden;
+    }
 
-        .nav-btn {
-            background: none;
-            border: 2px solid transparent;
-            padding: 8px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
+    .nav-menu.active {
+      display: flex;
+    }
 
-        .nav-btn:hover, .nav-btn.active {
-            background-color: var(--card-bg);
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
+    .nav-menu a {
+      padding: 15px 25px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      border-bottom: 1px solid #ffe6eb;
+      transition: background 0.2s;
+    }
 
-        /* Content Container */
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+    .nav-menu a:hover, .nav-menu a.active {
+      background-color: var(--card-bg);
+      color: var(--accent);
+    }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
+    /* Container Structure */
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
 
-        .page.active {
-            display: block;
-        }
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .page.active {
+      display: block;
+    }
 
-        h1.page-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 25px;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        /* --- หน้าแรก --- */
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
 
-        .gallery-container {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    /* Card Box Styles */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(255, 133, 162, 0.15);
+    }
 
-        .main-img-box {
-            width: 280px;
-            height: 350px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border: 4px solid #fff;
-            background-color: #fff;
-        }
+    /* Page 1: Main Gallery & Thumbnails */
+    .main-img-container {
+      width: 100%;
+      max-height: 350px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
 
-        .main-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .main-img-container img {
+      max-width: 100%;
+      max-height: 350px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
 
-        .thumbnails {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+    .thumb-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
 
-        .thumb-img {
-            width: 65px;
-            height: 80px;
-            border-radius: 12px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            transition: transform 0.2s, border-color 0.2s;
-        }
+    .thumb-bar img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      opacity: 0.7;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+    }
 
-        .thumb-img:hover {
-            transform: scale(1.05);
-            border-color: var(--accent);
-        }
+    .thumb-bar img.active, .thumb-bar img:hover {
+      opacity: 1;
+      border-color: var(--primary);
+    }
 
-        .info-card {
-            background-color: var(--card-bg);
-            padding: 25px 30px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 15px;
-            box-shadow: 0 6px 15px rgba(255, 182, 193, 0.2);
-        }
+    .bio-info p {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
 
-        .info-card p {
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
+    /* Social Icons */
+    .social-links {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
 
-        .social-section {
-            margin-top: 30px;
-            text-align: center;
-        }
+    .social-links a {
+      color: var(--primary);
+      font-size: 1.8rem;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
 
-        .social-section h2 {
-            font-size: 1.3rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
+    /* Images styling for maintain proportions */
+    .grid-img {
+      max-width: 100%;
+      max-height: 320px;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto 12px auto;
+      object-fit: contain;
+    }
 
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--accent);
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
+    .activity-card {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-        .social-icon:hover {
-            transform: translateY(-4px);
-            background-color: var(--accent);
-            color: #fff;
-        }
+    .activity-card p {
+      font-size: 0.95rem;
+      margin-top: 5px;
+    }
 
-        /* --- หน้ากิจกรรม --- */
-        .activity-container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+    .hobby-group {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-        .activity-card {
-            background-color: #ffffff;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
+    .hobby-group h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
 
-        .multi-img-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            width: 100%;
-            flex-wrap: wrap;
-        }
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
 
-        .multi-img-group img {
-            max-width: 30%;
-            max-height: 250px;
-            object-fit: contain;
-            border-radius: 12px;
-            background-color: #fafafa;
-        }
+    .image-grid img {
+      max-width: 100%;
+      max-height: 220px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
 
-        .single-img {
-            max-width: 100%;
-            max-height: 420px;
-            object-fit: contain;
-            border-radius: 12px;
-            background-color: #fafafa;
-        }
-
-        .caption {
-            font-size: 1rem;
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        .caption a {
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .gallery-container {
-                flex-direction: column;
-            }
-            .thumbnails {
-                flex-direction: row;
-            }
-            .thumb-img {
-                width: 70px;
-                height: 70px;
-            }
-            .multi-img-group img {
-                max-width: 100%;
-                max-height: 200px;
-            }
-        }
-    </style>
+    a.news-link {
+      color: var(--accent);
+      word-break: break-all;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- แถบเมนูด้านบน -->
-    <header>
-        <nav>
-            <div class="logo">✨ Meow's Space</div>
-            <ul class="nav-links">
-                <li><button class="nav-btn active" onclick="switchPage(event, 'home')">หน้าแรก</button></li>
-                <li><button class="nav-btn" onclick="switchPage(event, 'activity')">กิจกรรม</button></li>
-                <li><button class="nav-btn" onclick="switchPage(event, 'hobby')">งานอดิเรก</button></li>
-                <li><button class="nav-btn" onclick="switchPage(event, 'skill')">ความถนัด</button></li>
-                <li><button class="nav-btn" onclick="switchPage(event, 'contact')">ติดต่องาน</button></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Navigation Bar Header -->
+  <header>
+    <div class="brand">🌸 Meow's Profile</div>
+    <button class="menu-toggle" id="menuBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
 
-    <div class="container">
+  <!-- Mobile Dropdown Menu -->
+  <nav class="nav-menu" id="navMenu">
+    <a href="#home" class="nav-link active" onclick="showPage('home')">หน้าแรก</a>
+    <a href="#activities" class="nav-link" onclick="showPage('activities')">กิจกรรม</a>
+    <a href="#hobbies" class="nav-link" onclick="showPage('hobbies')">งานอดิเรก</a>
+    <a href="#skills" class="nav-link" onclick="showPage('skills')">ความถนัด</a>
+    <a href="#contact" class="nav-link" onclick="showPage('contact')">ติดต่องาน</a>
+  </nav>
 
-        <!-- 1. หน้าแรก -->
-        <section id="home" class="page active">
-            <h1 class="page-title">แนะนำตัว</h1>
-            <div class="profile-section">
-                
-                <div class="gallery-container">
-                    <div class="main-img-box">
-                        <img id="currentMainImg" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085342118481990/S__18735112_0.jpg?ex=6a88abbe&is=6a875a3e&hm=a80edb881c4dff2519b355e843551b95917d479416862369a007420fad7de8d8&" alt="รูปหลัก">
-                    </div>
-                    <div class="thumbnails">
-                        <img class="thumb-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085342743302224/S__18735113_0.jpg?ex=6a88abbf&is=6a875a3f&hm=93e232df2d80890ca52bdc1966561bc762be558a0eb7b5091145767b33e2f179&" onclick="changeImage(this.src)">
-                        <img class="thumb-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345868324924/S__18735114_0.jpg?ex=6a88abbf&is=6a875a3f&hm=f82f318148c13239455c5e05328231c29bc6578d3bd3c00ce9a040ea28b628ee&" onclick="changeImage(this.src)">
-                        <img class="thumb-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345519931513/S__18735115_0.jpg?ex=6a88abbf&is=6a875a3f&hm=1bebda81d1150bdb3ff4b062bbfbd0cdda40265a60bb5924119e24c6028d8f17&" onclick="changeImage(this.src)">
-                    </div>
-                </div>
+  <div class="container">
 
-                <div class="info-card">
-                    <p><strong>ชื่อ:</strong> ปวรินันท์ ศรีพินิจ</p>
-                    <p><strong>ชื่อเล่น:</strong> เหมียว</p>
-                    <p><strong>สูง:</strong> 157 เซนติเมตร</p>
-                    <p><strong>น้ำหนัก:</strong> 42 กิโลกรัม</p>
-                    <p><strong>เกิด:</strong> เมษายน พ.ศ.2545</p>
-                    <p><strong>ถิ่นกำเนิด:</strong> จังหวัดหนองคาย ประเทศไทย</p>
-                    <p><strong>ภาษาที่ใช้:</strong> ไทย อังกฤษ (กำลังศึกษา ญี่ปุ่น จีน)</p>
-                    <p><strong>ระดับการศึกษา:</strong> ปริญญาตรีศิลปศาสตร์บัณฑิต มนุษยศาสตร์ ปรัชญาและศาสนา (กำลังศึกษา นิติศาสตร์บัณฑิต)</p>
-                </div>
+    <!-- PAGE 1: หน้าแรก (แนะนำตัว) -->
+    <section id="home" class="page active">
+      <h1>แนะนำตัว</h1>
 
-            </div>
+      <!-- รูปหลัก + รูปเล็กด้านข้าง/ด้านล่าง -->
+      <div class="main-img-container">
+        <img id="mainImage" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085342118481990/S__18735112_0.jpg?ex=6a88abbe&is=6a875a3e&hm=a80edb881c4dff2519b355e843551b95917d479416862369a007420fad7de8d8&" alt="รูปหลัก">
+      </div>
 
-            <div class="social-section">
-                <h2>ช่องทางการติดตามกิจกรรม</h2>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/itsmeowluxx_?utm_source=qr" target="_blank" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/manatsanan.sripinit/" target="_blank" class="social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/@Itsmemameow" target="_blank" class="social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://www.tiktok.com/@itsmeowluxx?_r=1&_t=ZS-992xffVRfyn" target="_blank" class="social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.threads.com/@itsmeowluxx_?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="social-icon" title="Threads"><i class="fa-brands fa-threads"></i></a>
-                </div>
-            </div>
-        </section>
+      <div class="thumb-bar">
+        <img class="thumb active" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085342118481990/S__18735112_0.jpg?ex=6a88abbe&is=6a875a3e&hm=a80edb881c4dff2519b355e843551b95917d479416862369a007420fad7de8d8&" onclick="changeImage(this)">
+        <img class="thumb" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085342743302224/S__18735113_0.jpg?ex=6a88abbf&is=6a875a3f&hm=93e232df2d80890ca52bdc1966561bc762be558a0eb7b5091145767b33e2f179&" onclick="changeImage(this)">
+        <img class="thumb" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345868324924/S__18735114_0.jpg?ex=6a88abbf&is=6a875a3f&hm=f82f318148c13239455c5e05328231c29bc6578d3bd3c00ce9a040ea28b628ee&" onclick="changeImage(this)">
+        <img class="thumb" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345519931513/S__18735115_0.jpg?ex=6a88abbf&is=6a875a3f&hm=1bebda81d1150bdb3ff4b062bbfbd0cdda40265a60bb5924119e24c6028d8f17&" onclick="changeImage(this)">
+      </div>
 
-        <!-- 2. หน้ากิจกรรม -->
-        <section id="activity" class="page">
-            <h1 class="page-title">กิจกรรม</h1>
-            
-            <div class="activity-container">
-                <!-- แถวรวม 3 รูปแรก -->
-                <div class="activity-card">
-                    <div class="multi-img-group">
-                        <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343485689919/IMG_4982.JPG?ex=6a88abbf&is=6a875a3f&hm=74f01d90e9a4d31b92cb47d9b16e4f1871717db92f6a0e2899b1c6b716d0172c&">
-                        <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343817175152/IMG_5203.JPG?ex=6a88abbf&is=6a875a3f&hm=254d1d636af136ac47fc830625ba2963c242e7957278b480d055eb29f1576466&">
-                        <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540085344563765268/FB_IMG_1659497612608.jpg?ex=6a88abbf&is=6a875a3f&hm=76c11b2f1c81469c7db2c90a6cbde06d57fa177d141f4de837cf60c37a64801b&">
-                    </div>
-                    <p class="caption">นางแบบถ่ายภาพ เสื้อผ้าและคอสเพลย์</p>
-                </div>
+      <!-- ข้อมูลส่วนตัว -->
+      <div class="card bio-info">
+        <p><strong>ชื่อ:</strong> ปวรินันท์ ศรีพินิจ</p>
+        <p><strong>ชื่อเล่น:</strong> เหมียว</p>
+        <p><strong>ส่วนสูง:</strong> 157 เซนติเมตร</p>
+        <p><strong>น้ำหนัก:</strong> 42 กิโลกรัม</p>
+        <p><strong>เกิด:</strong> เมษายน พ.ศ.2545</p>
+        <p><strong>ถิ่นกำเนิด:</strong> จังหวัดหนองคาย ประเทศไทย</p>
+        <p><strong>ภาษาที่ใช้:</strong> ไทย, อังกฤษ (กำลังศึกษา ญี่ปุ่น, จีน)</p>
+        <p><strong>ระดับการศึกษา:</strong> ปริญญาตรีศิลปศาสตร์บัณฑิต มนุษยศาสตร์ ปรัชญาและศาสนา (กำลังศึกษา นิติศาสตร์บัณฑิต)</p>
+      </div>
 
-                <!-- ประธานรุ่น -->
-                <div class="activity-card">
-                    <img class="single-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343175319803/IMG_8148.JPG?ex=6a88abbf&is=6a875a3f&hm=d4825bab7477f17422812b7040dbfaa02e0ad963c3aa32f2febd553a4f860cd2&">
-                    <p class="caption">รับตำแหน่งประธานรุ่น ระดับปริญญาตรีและลงสมัครสภาชิกสภาผู้แทนนิสิต</p>
-                </div>
+      <!-- ช่องทางการติดตาม -->
+      <div class="card">
+        <h3 style="text-align: center; color: var(--primary); margin-bottom: 10px; font-size: 1.1rem;">ช่องทางการติดตามกิจกรรม</h3>
+        <div class="social-links">
+          <a href="https://www.instagram.com/itsmeowluxx_?utm_source=qr" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/manatsanan.sripinit/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.youtube.com/@Itsmemameow" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@itsmeowluxx?_r=1&_t=ZS-992xffVRfyn" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.threads.com/@itsmeowluxx_?igshid=NTc4MTIwNjQ2YQ==" target="_blank"><i class="fa-brands fa-threads"></i></a>
+        </div>
+      </div>
+    </section>
 
-                <!-- TCAS -->
-                <div class="activity-card">
-                    <img class="single-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345008357536/IMG_0889.JPG?ex=6a88abbf&is=6a875a3f&hm=cf8dfdf0174fad71b8b2a5e6d34dbd29572c9e699008003805d2c4e3974e371d&">
-                    <p class="caption">
-                        หนึ่งในตัวแทนสมาชิกขององค์กรนิสิต-นักศึกษาในการยื่นหนังสือต่อสมาชิกสภาเพื่อแก้ไขปัญหาจากการสอบ TCAS ปี 2567<br>
-                        ข่าวที่เกี่ยวข้อง : <a href="https://www.matichon.co.th/weekly/hot-news/article_767941" target="_blank">Matichon Weekly</a>
-                    </p>
-                </div>
+    <!-- PAGE 2: กิจกรรม -->
+    <section id="activities" class="page">
+      <h1>กิจกรรม</h1>
 
-                <!-- อาสาสมัครญี่ปุ่น -->
-                <div class="activity-card">
-                    <img class="single-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085344232407162/65c1b09b-bac5-4698-8200-6a01d17ead30.jpg?ex=6a88abbf&is=6a875a3f&hm=a5e0e975cc07e33c3f791acc0d357f5ce7b797ffb1fd58b2f9fcd94130c247de&">
-                    <p class="caption">เข้าร่วมกิจกรรมอาสาสมัครเพื่อช่วยเหลืองานชาวบ้านในชนบทที่หมู่บ้าน oi-cho เมือง anan จังหวัด tokushima ประเทศญี่ปุ่น</p>
-                </div>
-            </div>
-        </section>
+      <div class="card activity-card">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343485689919/IMG_4982.JPG?ex=6a88abbf&is=6a875a3f&hm=74f01d90e9a4d31b92cb47d9b16e4f1871717db92f6a0e2899b1c6b716d0172c&">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343817175152/IMG_5203.JPG?ex=6a88abbf&is=6a875a3f&hm=254d1d636af136ac47fc830625ba2963c242e7957278b480d055eb29f1576466&">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085344563765268/FB_IMG_1659497612608.jpg?ex=6a88abbf&is=6a875a3f&hm=76c11b2f1c81469c7db2c90a6cbde06d57fa177d141f4de837cf60c37a64801b&">
+        <p>นางแบบถ่ายภาพ เสื้อผ้าและคอสเพลย์</p>
+      </div>
 
-        <!-- 3. หน้าอื่นๆ (เว้นไว้ตามข้อตกลง) -->
-        <section id="hobby" class="page">
-            <h1 class="page-title">งานอดิเรก</h1>
-            <p style="text-align: center; opacity: 0.7;">กำลังเตรียมข้อมูล...</p>
-        </section>
+      <div class="card activity-card">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085343175319803/IMG_8148.JPG?ex=6a88abbf&is=6a875a3f&hm=d4825bab7477f17422812b7040dbfaa02e0ad963c3aa32f2febd553a4f860cd2&">
+        <p>รับตำแหน่งประธานรุ่น ระดับปริญญาตรีและลงสมัครสภาชิกสภาผู้แทนนิสิต</p>
+      </div>
 
-        <section id="skill" class="page">
-            <h1 class="page-title">ความถนัด</h1>
-            <p style="text-align: center; opacity: 0.7;">กำลังเตรียมข้อมูล...</p>
-        </section>
+      <div class="card activity-card">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085345008357536/IMG_0889.JPG?ex=6a88abbf&is=6a875a3f&hm=cf8dfdf0174fad71b8b2a5e6d34dbd29572c9e699008003805d2c4e3974e371d&">
+        <p>หนึ่งในตัวแทนสมาชิกขององค์กรนิสิต-นักศึกษาในการยื่นหนังสือต่อสมาชิกสภาเพื่อแก้ไขปัญหาจากการสอบ TCAS ปี 2567</p>
+        <p style="margin-top: 5px;">ข่าวที่เกี่ยวข้อง: <a class="news-link" href="https://www.matichon.co.th/weekly/hot-news/article_767941" target="_blank">อ่านมติชน</a></p>
+      </div>
 
-        <section id="contact" class="page">
-            <h1 class="page-title">ติดต่องาน</h1>
-            <p style="text-align: center; opacity: 0.7;">กำลังเตรียมข้อมูล...</p>
-        </section>
+      <div class="card activity-card">
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540085344232407162/65c1b09b-bac5-4698-8200-6a01d17ead30.jpg?ex=6a88abbf&is=6a875a3f&hm=a5e0e975cc07e33c3f791acc0d357f5ce7b797ffb1fd58b2f9fcd94130c247de&">
+        <p>เข้าร่วมกิจกรรมอาสาสมัครเพื่อช่วยเหลืองานชาวบ้านในชนบทที่หมู่บ้าน oi-cho เมือง anan จังหวัด tokushima ประเทศญี่ปุ่น</p>
+      </div>
+    </section>
 
-    </div>
+    <!-- PAGE 3: งานอดิเรก -->
+    <section id="hobbies" class="page">
+      <h1>งานอดิเรก</h1>
 
-    <script>
-        // ฟังก์ชันสลับหน้า
-        function switchPage(event, pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      <div class="card hobby-group">
+        <h3>📖 อ่านหนังสือ</h3>
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540096054639206437/S__1122323_0.jpg?ex=6a88b5b9&is=6a876439&hm=ac1d0b4eeff33c98ee154d921c08632e41b58dd95f027a86c2b29b4d6f092353&">
+      </div>
 
-            document.getElementById(pageId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
+      <div class="card hobby-group">
+        <h3>🎮 เล่นเกม</h3>
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540096054257655818/S__1122322_0.png?ex=6a88b5b8&is=6a876438&hm=03e776397d9851a0eed8a524369b96eb1d55bc3800b0339ee0093f779868711a&">
+      </div>
 
-        // ฟังก์ชันสลับภาพหลักในหน้าแรก
-        function changeImage(src) {
-            document.getElementById('currentMainImg').src = src;
-        }
-    </script>
+      <div class="card hobby-group">
+        <h3>📷 ถ่ายภาพ</h3>
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540096056073781308/S__1122325_0.jpg?ex=6a88b5b9&is=6a876439&hm=e3276b538c5eba9a8c5e6e75772f4f8482884fbfaf7645ab230d1ef8cf72217a&">
+      </div>
+
+      <div class="card hobby-group">
+        <h3>🐾 เรียนรู้และช่วยเหลือสัตว์ต่างๆ</h3>
+        <div class="image-grid">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096055415406813/S__1122324_0.jpg?ex=6a88b5b9&is=6a876439&hm=9eb83a43fb876d9d67e473c352395649fb64009398581f191adee4f5ed837c66&">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096783433207910/S__18735120_0.jpg?ex=6a88b666&is=6a8764e6&hm=3334f8a00702accaaba3bdb5457f090bc9e0be93f4cff00a8306746bda4e8e96&">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096783974400140/S__18735121_0.jpg?ex=6a88b666&is=6a8764e6&hm=6fb2269712cb9f47f57c630e7210361fa671c0876014b00e1529567c75e39083&">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096780937596959/S__18735122_0.jpg?ex=6a88b666&is=6a8764e6&hm=639cbc831cd5d645e338dceb94d921980c6dfafe48332c531a30d6d1a0eb13a3&">
+        </div>
+      </div>
+
+      <div class="card hobby-group">
+        <h3>🏸 เล่นกีฬา</h3>
+        <img class="grid-img" src="https://cdn.discordapp.com/attachments/846440270001340446/1540096781612748870/S__18735117_0.jpg?ex=6a88b666&is=6a8764e6&hm=26dded5227b2109d051293806e171d30b5791327874431146102725ea81ba4c7&">
+      </div>
+
+      <div class="card hobby-group">
+        <h3>✈️ ท่องเที่ยว</h3>
+        <div class="image-grid">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096782091161741/S__18735118_0.jpg?ex=6a88b666&is=6a8764e6&hm=8dc738c97ca23931ebe14196597905c313ff08532b079b3fd2f1aa080eb7540c&">
+          <img src="https://cdn.discordapp.com/attachments/846440270001340446/1540096782577434705/S__18735119_0.jpg?ex=6a88b666&is=6a8764e6&hm=71ff375dec4435a4f6a198abfe6a9c8d012f50b882050b21bfbc4357f85676c6&">
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: ความถนัด -->
+    <section id="skills" class="page">
+      <h1>ความถนัด</h1>
+      <div class="card">
+        <p style="text-align: center; padding: 20px 0;">✨ อยู่ระหว่างเพิ่มข้อมูลความถนัด ✨</p>
+      </div>
+    </section>
+
+    <!-- PAGE 5: ติดต่องาน -->
+    <section id="contact" class="page">
+      <h1>ติดต่องาน</h1>
+      <div class="card" style="text-align: center;">
+        <p style="margin-bottom: 15px;">สามารถส่งข้อความติดต่องานได้ทาง Social Media ดังนี้</p>
+        <div class="social-links" style="max-width: 200px; margin: 0 auto;">
+          <a href="https://www.instagram.com/itsmeowluxx_?utm_source=qr" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/manatsanan.sripinit/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // เมนู Toggle หน้าจอส่วนมือถือ
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    menuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // สลับหน้า (SPA Navigation)
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      document.getElementById(pageId).classList.add('active');
+      navMenu.classList.remove('active');
+
+      // เลื่อนหน้าจอกลับไปที่จุดเริ่มต้นบนสุด
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ฟังก์ชันเปลี่ยนรูปหลักในหน้าแรกเมื่อกดเลือกรูป thumbnail
+    function changeImage(element) {
+      const mainImg = document.getElementById('mainImage');
+      const thumbs = document.querySelectorAll('.thumb');
+      
+      mainImg.src = element.src;
+      
+      thumbs.forEach(thumb => thumb.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
 </body>
 </html>
